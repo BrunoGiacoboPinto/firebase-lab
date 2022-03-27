@@ -1,14 +1,17 @@
 import 'dart:async';
 
-import 'package:animations/animations.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import 'ui/login.dart';
 
 void main() {
   runZonedGuarded(
-    () {
+    () async {
       WidgetsFlutterBinding.ensureInitialized();
+      await Firebase.initializeApp();
       runApp(const App());
     },
     (error, stackTrace) {
@@ -18,6 +21,51 @@ void main() {
     },
   );
 }
+
+class App extends StatefulWidget {
+  const App({Key? key}) : super(key: key);
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  late final StreamSubscription<User?> userStatusSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    userStatusSubscription = FirebaseAuth.instance.authStateChanges().listen(
+      (User? user) {
+        if (user == null) {
+          debugPrint('User signed out');
+        } else {
+          debugPrint('User signed in as ${user.uid} with email ${user.email}');
+          for (final info in user.providerData) {
+            debugPrint(info.toString());
+          }
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    userStatusSubscription.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      routes: {
+        LoginScreen.routeName: (context) => const LoginScreen(),
+      },
+    );
+  }
+}
+
+/*
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -110,7 +158,7 @@ class _OnboardFlowState extends State<OnboardFlow> {
                         index = (index + 1) % children.length;
                       });
                     },
-                    child: Text('Próximo'),
+                    child: const Text('Próximo'),
                   ),
                 ),
               ),
@@ -298,4 +346,4 @@ class _OnboardFinishPageState extends State<OnboardFinishPage> {
       ],
     );
   }
-}
+} */
