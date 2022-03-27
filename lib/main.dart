@@ -2,16 +2,19 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_lab/authentication/notifiers/login_notifier.dart';
+import 'package:firebase_lab/di/injection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'ui/login.dart';
+import 'authentication/ui/login.dart';
 
 void main() {
   runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
       await Firebase.initializeApp();
+      inject.registerSingleton(LoginStateNotifier());
       runApp(const App());
     },
     (error, stackTrace) {
