@@ -18,38 +18,56 @@ Map<String, dynamic> _$$_CreateAccountStateToJson(
       'runtimeType': instance.$type,
     };
 
-_$_CreateAccountStateError _$$_CreateAccountStateErrorFromJson(
+_$CreateAccountStateValue _$$CreateAccountStateValueFromJson(
         Map<String, dynamic> json) =>
-    _$_CreateAccountStateError(
+    _$CreateAccountStateValue(
+      userId: json['userId'] as String,
+      password: json['password'] as String,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_CreateAccountStateErrorToJson(
-        _$_CreateAccountStateError instance) =>
+Map<String, dynamic> _$$CreateAccountStateValueToJson(
+        _$CreateAccountStateValue instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+      'password': instance.password,
+      'runtimeType': instance.$type,
+    };
+
+_$CreateAccountStateError _$$CreateAccountStateErrorFromJson(
+        Map<String, dynamic> json) =>
+    _$CreateAccountStateError(
+      json['code'] as String,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$CreateAccountStateErrorToJson(
+        _$CreateAccountStateError instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'runtimeType': instance.$type,
+    };
+
+_$CreateAccountStateLoading _$$CreateAccountStateLoadingFromJson(
+        Map<String, dynamic> json) =>
+    _$CreateAccountStateLoading(
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$CreateAccountStateLoadingToJson(
+        _$CreateAccountStateLoading instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };
 
-_$_CreateAccountStateLoading _$$_CreateAccountStateLoadingFromJson(
+_$CreateAccountStateSuccess _$$CreateAccountStateSuccessFromJson(
         Map<String, dynamic> json) =>
-    _$_CreateAccountStateLoading(
+    _$CreateAccountStateSuccess(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_CreateAccountStateLoadingToJson(
-        _$_CreateAccountStateLoading instance) =>
-    <String, dynamic>{
-      'runtimeType': instance.$type,
-    };
-
-_$_CreateAccountStateSuccess _$$_CreateAccountStateSuccessFromJson(
-        Map<String, dynamic> json) =>
-    _$_CreateAccountStateSuccess(
-      $type: json['runtimeType'] as String?,
-    );
-
-Map<String, dynamic> _$$_CreateAccountStateSuccessToJson(
-        _$_CreateAccountStateSuccess instance) =>
+Map<String, dynamic> _$$CreateAccountStateSuccessToJson(
+        _$CreateAccountStateSuccess instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };

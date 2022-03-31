@@ -7,11 +7,16 @@ part 'account_state.freezed.dart';
 class CreateAccountState with _$CreateAccountState {
   const factory CreateAccountState() = _CreateAccountState;
 
-  const factory CreateAccountState.error() = _CreateAccountStateError;
+  const factory CreateAccountState.value({
+    required String userId,
+    required String password,
+  }) = CreateAccountStateValue;
 
-  const factory CreateAccountState.loading() = _CreateAccountStateLoading;
+  const factory CreateAccountState.error(String code) = CreateAccountStateError;
 
-  const factory CreateAccountState.success() = _CreateAccountStateSuccess;
+  const factory CreateAccountState.loading() = CreateAccountStateLoading;
+
+  const factory CreateAccountState.success() = CreateAccountStateSuccess;
 
   factory CreateAccountState.fromJson(Map<String, Object?> json) => _$CreateAccountStateFromJson(json);
 }

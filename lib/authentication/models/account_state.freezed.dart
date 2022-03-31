@@ -18,12 +18,14 @@ CreateAccountState _$CreateAccountStateFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'default':
       return _CreateAccountState.fromJson(json);
+    case 'value':
+      return CreateAccountStateValue.fromJson(json);
     case 'error':
-      return _CreateAccountStateError.fromJson(json);
+      return CreateAccountStateError.fromJson(json);
     case 'loading':
-      return _CreateAccountStateLoading.fromJson(json);
+      return CreateAccountStateLoading.fromJson(json);
     case 'success':
-      return _CreateAccountStateSuccess.fromJson(json);
+      return CreateAccountStateSuccess.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'CreateAccountState',
@@ -39,16 +41,26 @@ class _$CreateAccountStateTearOff {
     return const _CreateAccountState();
   }
 
-  _CreateAccountStateError error() {
-    return const _CreateAccountStateError();
+  CreateAccountStateValue value(
+      {required String userId, required String password}) {
+    return CreateAccountStateValue(
+      userId: userId,
+      password: password,
+    );
   }
 
-  _CreateAccountStateLoading loading() {
-    return const _CreateAccountStateLoading();
+  CreateAccountStateError error(String code) {
+    return CreateAccountStateError(
+      code,
+    );
   }
 
-  _CreateAccountStateSuccess success() {
-    return const _CreateAccountStateSuccess();
+  CreateAccountStateLoading loading() {
+    return const CreateAccountStateLoading();
+  }
+
+  CreateAccountStateSuccess success() {
+    return const CreateAccountStateSuccess();
   }
 
   CreateAccountState fromJson(Map<String, Object?> json) {
@@ -64,7 +76,8 @@ mixin _$CreateAccountState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function() error,
+    required TResult Function(String userId, String password) value,
+    required TResult Function(String code) error,
     required TResult Function() loading,
     required TResult Function() success,
   }) =>
@@ -72,7 +85,8 @@ mixin _$CreateAccountState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? error,
+    TResult Function(String userId, String password)? value,
+    TResult Function(String code)? error,
     TResult Function()? loading,
     TResult Function()? success,
   }) =>
@@ -80,7 +94,8 @@ mixin _$CreateAccountState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? error,
+    TResult Function(String userId, String password)? value,
+    TResult Function(String code)? error,
     TResult Function()? loading,
     TResult Function()? success,
     required TResult orElse(),
@@ -89,25 +104,28 @@ mixin _$CreateAccountState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(_CreateAccountState value) $default, {
-    required TResult Function(_CreateAccountStateError value) error,
-    required TResult Function(_CreateAccountStateLoading value) loading,
-    required TResult Function(_CreateAccountStateSuccess value) success,
+    required TResult Function(CreateAccountStateValue value) value,
+    required TResult Function(CreateAccountStateError value) error,
+    required TResult Function(CreateAccountStateLoading value) loading,
+    required TResult Function(CreateAccountStateSuccess value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult Function(_CreateAccountState value)? $default, {
-    TResult Function(_CreateAccountStateError value)? error,
-    TResult Function(_CreateAccountStateLoading value)? loading,
-    TResult Function(_CreateAccountStateSuccess value)? success,
+    TResult Function(CreateAccountStateValue value)? value,
+    TResult Function(CreateAccountStateError value)? error,
+    TResult Function(CreateAccountStateLoading value)? loading,
+    TResult Function(CreateAccountStateSuccess value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_CreateAccountState value)? $default, {
-    TResult Function(_CreateAccountStateError value)? error,
-    TResult Function(_CreateAccountStateLoading value)? loading,
-    TResult Function(_CreateAccountStateSuccess value)? success,
+    TResult Function(CreateAccountStateValue value)? value,
+    TResult Function(CreateAccountStateError value)? error,
+    TResult Function(CreateAccountStateLoading value)? loading,
+    TResult Function(CreateAccountStateSuccess value)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -179,7 +197,8 @@ class _$_CreateAccountState implements _CreateAccountState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function() error,
+    required TResult Function(String userId, String password) value,
+    required TResult Function(String code) error,
     required TResult Function() loading,
     required TResult Function() success,
   }) {
@@ -190,7 +209,8 @@ class _$_CreateAccountState implements _CreateAccountState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? error,
+    TResult Function(String userId, String password)? value,
+    TResult Function(String code)? error,
     TResult Function()? loading,
     TResult Function()? success,
   }) {
@@ -201,7 +221,8 @@ class _$_CreateAccountState implements _CreateAccountState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? error,
+    TResult Function(String userId, String password)? value,
+    TResult Function(String code)? error,
     TResult Function()? loading,
     TResult Function()? success,
     required TResult orElse(),
@@ -216,9 +237,10 @@ class _$_CreateAccountState implements _CreateAccountState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(_CreateAccountState value) $default, {
-    required TResult Function(_CreateAccountStateError value) error,
-    required TResult Function(_CreateAccountStateLoading value) loading,
-    required TResult Function(_CreateAccountStateSuccess value) success,
+    required TResult Function(CreateAccountStateValue value) value,
+    required TResult Function(CreateAccountStateError value) error,
+    required TResult Function(CreateAccountStateLoading value) loading,
+    required TResult Function(CreateAccountStateSuccess value) success,
   }) {
     return $default(this);
   }
@@ -227,9 +249,10 @@ class _$_CreateAccountState implements _CreateAccountState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult Function(_CreateAccountState value)? $default, {
-    TResult Function(_CreateAccountStateError value)? error,
-    TResult Function(_CreateAccountStateLoading value)? loading,
-    TResult Function(_CreateAccountStateSuccess value)? success,
+    TResult Function(CreateAccountStateValue value)? value,
+    TResult Function(CreateAccountStateError value)? error,
+    TResult Function(CreateAccountStateLoading value)? loading,
+    TResult Function(CreateAccountStateSuccess value)? success,
   }) {
     return $default?.call(this);
   }
@@ -238,9 +261,10 @@ class _$_CreateAccountState implements _CreateAccountState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_CreateAccountState value)? $default, {
-    TResult Function(_CreateAccountStateError value)? error,
-    TResult Function(_CreateAccountStateLoading value)? loading,
-    TResult Function(_CreateAccountStateSuccess value)? success,
+    TResult Function(CreateAccountStateValue value)? value,
+    TResult Function(CreateAccountStateError value)? error,
+    TResult Function(CreateAccountStateLoading value)? loading,
+    TResult Function(CreateAccountStateSuccess value)? success,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -263,83 +287,122 @@ abstract class _CreateAccountState implements CreateAccountState {
 }
 
 /// @nodoc
-abstract class _$CreateAccountStateErrorCopyWith<$Res> {
-  factory _$CreateAccountStateErrorCopyWith(_CreateAccountStateError value,
-          $Res Function(_CreateAccountStateError) then) =
-      __$CreateAccountStateErrorCopyWithImpl<$Res>;
+abstract class $CreateAccountStateValueCopyWith<$Res> {
+  factory $CreateAccountStateValueCopyWith(CreateAccountStateValue value,
+          $Res Function(CreateAccountStateValue) then) =
+      _$CreateAccountStateValueCopyWithImpl<$Res>;
+  $Res call({String userId, String password});
 }
 
 /// @nodoc
-class __$CreateAccountStateErrorCopyWithImpl<$Res>
+class _$CreateAccountStateValueCopyWithImpl<$Res>
     extends _$CreateAccountStateCopyWithImpl<$Res>
-    implements _$CreateAccountStateErrorCopyWith<$Res> {
-  __$CreateAccountStateErrorCopyWithImpl(_CreateAccountStateError _value,
-      $Res Function(_CreateAccountStateError) _then)
-      : super(_value, (v) => _then(v as _CreateAccountStateError));
+    implements $CreateAccountStateValueCopyWith<$Res> {
+  _$CreateAccountStateValueCopyWithImpl(CreateAccountStateValue _value,
+      $Res Function(CreateAccountStateValue) _then)
+      : super(_value, (v) => _then(v as CreateAccountStateValue));
 
   @override
-  _CreateAccountStateError get _value =>
-      super._value as _CreateAccountStateError;
+  CreateAccountStateValue get _value => super._value as CreateAccountStateValue;
+
+  @override
+  $Res call({
+    Object? userId = freezed,
+    Object? password = freezed,
+  }) {
+    return _then(CreateAccountStateValue(
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_CreateAccountStateError implements _CreateAccountStateError {
-  const _$_CreateAccountStateError({String? $type}) : $type = $type ?? 'error';
+class _$CreateAccountStateValue implements CreateAccountStateValue {
+  const _$CreateAccountStateValue(
+      {required this.userId, required this.password, String? $type})
+      : $type = $type ?? 'value';
 
-  factory _$_CreateAccountStateError.fromJson(Map<String, dynamic> json) =>
-      _$$_CreateAccountStateErrorFromJson(json);
+  factory _$CreateAccountStateValue.fromJson(Map<String, dynamic> json) =>
+      _$$CreateAccountStateValueFromJson(json);
+
+  @override
+  final String userId;
+  @override
+  final String password;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'CreateAccountState.error()';
+    return 'CreateAccountState.value(userId: $userId, password: $password)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _CreateAccountStateError);
+        (other.runtimeType == runtimeType &&
+            other is CreateAccountStateValue &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.password, password));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(password));
+
+  @JsonKey(ignore: true)
+  @override
+  $CreateAccountStateValueCopyWith<CreateAccountStateValue> get copyWith =>
+      _$CreateAccountStateValueCopyWithImpl<CreateAccountStateValue>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function() error,
+    required TResult Function(String userId, String password) value,
+    required TResult Function(String code) error,
     required TResult Function() loading,
     required TResult Function() success,
   }) {
-    return error();
+    return value(userId, password);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? error,
+    TResult Function(String userId, String password)? value,
+    TResult Function(String code)? error,
     TResult Function()? loading,
     TResult Function()? success,
   }) {
-    return error?.call();
+    return value?.call(userId, password);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? error,
+    TResult Function(String userId, String password)? value,
+    TResult Function(String code)? error,
     TResult Function()? loading,
     TResult Function()? success,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error();
+    if (value != null) {
+      return value(userId, password);
     }
     return orElse();
   }
@@ -348,9 +411,181 @@ class _$_CreateAccountStateError implements _CreateAccountStateError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(_CreateAccountState value) $default, {
-    required TResult Function(_CreateAccountStateError value) error,
-    required TResult Function(_CreateAccountStateLoading value) loading,
-    required TResult Function(_CreateAccountStateSuccess value) success,
+    required TResult Function(CreateAccountStateValue value) value,
+    required TResult Function(CreateAccountStateError value) error,
+    required TResult Function(CreateAccountStateLoading value) loading,
+    required TResult Function(CreateAccountStateSuccess value) success,
+  }) {
+    return value(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_CreateAccountState value)? $default, {
+    TResult Function(CreateAccountStateValue value)? value,
+    TResult Function(CreateAccountStateError value)? error,
+    TResult Function(CreateAccountStateLoading value)? loading,
+    TResult Function(CreateAccountStateSuccess value)? success,
+  }) {
+    return value?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_CreateAccountState value)? $default, {
+    TResult Function(CreateAccountStateValue value)? value,
+    TResult Function(CreateAccountStateError value)? error,
+    TResult Function(CreateAccountStateLoading value)? loading,
+    TResult Function(CreateAccountStateSuccess value)? success,
+    required TResult orElse(),
+  }) {
+    if (value != null) {
+      return value(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CreateAccountStateValueToJson(this);
+  }
+}
+
+abstract class CreateAccountStateValue implements CreateAccountState {
+  const factory CreateAccountStateValue(
+      {required String userId,
+      required String password}) = _$CreateAccountStateValue;
+
+  factory CreateAccountStateValue.fromJson(Map<String, dynamic> json) =
+      _$CreateAccountStateValue.fromJson;
+
+  String get userId;
+  String get password;
+  @JsonKey(ignore: true)
+  $CreateAccountStateValueCopyWith<CreateAccountStateValue> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreateAccountStateErrorCopyWith<$Res> {
+  factory $CreateAccountStateErrorCopyWith(CreateAccountStateError value,
+          $Res Function(CreateAccountStateError) then) =
+      _$CreateAccountStateErrorCopyWithImpl<$Res>;
+  $Res call({String code});
+}
+
+/// @nodoc
+class _$CreateAccountStateErrorCopyWithImpl<$Res>
+    extends _$CreateAccountStateCopyWithImpl<$Res>
+    implements $CreateAccountStateErrorCopyWith<$Res> {
+  _$CreateAccountStateErrorCopyWithImpl(CreateAccountStateError _value,
+      $Res Function(CreateAccountStateError) _then)
+      : super(_value, (v) => _then(v as CreateAccountStateError));
+
+  @override
+  CreateAccountStateError get _value => super._value as CreateAccountStateError;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+  }) {
+    return _then(CreateAccountStateError(
+      code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CreateAccountStateError implements CreateAccountStateError {
+  const _$CreateAccountStateError(this.code, {String? $type})
+      : $type = $type ?? 'error';
+
+  factory _$CreateAccountStateError.fromJson(Map<String, dynamic> json) =>
+      _$$CreateAccountStateErrorFromJson(json);
+
+  @override
+  final String code;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'CreateAccountState.error(code: $code)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CreateAccountStateError &&
+            const DeepCollectionEquality().equals(other.code, code));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(code));
+
+  @JsonKey(ignore: true)
+  @override
+  $CreateAccountStateErrorCopyWith<CreateAccountStateError> get copyWith =>
+      _$CreateAccountStateErrorCopyWithImpl<CreateAccountStateError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(String userId, String password) value,
+    required TResult Function(String code) error,
+    required TResult Function() loading,
+    required TResult Function() success,
+  }) {
+    return error(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(String userId, String password)? value,
+    TResult Function(String code)? error,
+    TResult Function()? loading,
+    TResult Function()? success,
+  }) {
+    return error?.call(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(String userId, String password)? value,
+    TResult Function(String code)? error,
+    TResult Function()? loading,
+    TResult Function()? success,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(code);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_CreateAccountState value) $default, {
+    required TResult Function(CreateAccountStateValue value) value,
+    required TResult Function(CreateAccountStateError value) error,
+    required TResult Function(CreateAccountStateLoading value) loading,
+    required TResult Function(CreateAccountStateSuccess value) success,
   }) {
     return error(this);
   }
@@ -359,9 +594,10 @@ class _$_CreateAccountStateError implements _CreateAccountStateError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult Function(_CreateAccountState value)? $default, {
-    TResult Function(_CreateAccountStateError value)? error,
-    TResult Function(_CreateAccountStateLoading value)? loading,
-    TResult Function(_CreateAccountStateSuccess value)? success,
+    TResult Function(CreateAccountStateValue value)? value,
+    TResult Function(CreateAccountStateError value)? error,
+    TResult Function(CreateAccountStateLoading value)? loading,
+    TResult Function(CreateAccountStateSuccess value)? success,
   }) {
     return error?.call(this);
   }
@@ -370,9 +606,10 @@ class _$_CreateAccountStateError implements _CreateAccountStateError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_CreateAccountState value)? $default, {
-    TResult Function(_CreateAccountStateError value)? error,
-    TResult Function(_CreateAccountStateLoading value)? loading,
-    TResult Function(_CreateAccountStateSuccess value)? success,
+    TResult Function(CreateAccountStateValue value)? value,
+    TResult Function(CreateAccountStateError value)? error,
+    TResult Function(CreateAccountStateLoading value)? loading,
+    TResult Function(CreateAccountStateSuccess value)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -383,45 +620,51 @@ class _$_CreateAccountStateError implements _CreateAccountStateError {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateAccountStateErrorToJson(this);
+    return _$$CreateAccountStateErrorToJson(this);
   }
 }
 
-abstract class _CreateAccountStateError implements CreateAccountState {
-  const factory _CreateAccountStateError() = _$_CreateAccountStateError;
+abstract class CreateAccountStateError implements CreateAccountState {
+  const factory CreateAccountStateError(String code) =
+      _$CreateAccountStateError;
 
-  factory _CreateAccountStateError.fromJson(Map<String, dynamic> json) =
-      _$_CreateAccountStateError.fromJson;
+  factory CreateAccountStateError.fromJson(Map<String, dynamic> json) =
+      _$CreateAccountStateError.fromJson;
+
+  String get code;
+  @JsonKey(ignore: true)
+  $CreateAccountStateErrorCopyWith<CreateAccountStateError> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$CreateAccountStateLoadingCopyWith<$Res> {
-  factory _$CreateAccountStateLoadingCopyWith(_CreateAccountStateLoading value,
-          $Res Function(_CreateAccountStateLoading) then) =
-      __$CreateAccountStateLoadingCopyWithImpl<$Res>;
+abstract class $CreateAccountStateLoadingCopyWith<$Res> {
+  factory $CreateAccountStateLoadingCopyWith(CreateAccountStateLoading value,
+          $Res Function(CreateAccountStateLoading) then) =
+      _$CreateAccountStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$CreateAccountStateLoadingCopyWithImpl<$Res>
+class _$CreateAccountStateLoadingCopyWithImpl<$Res>
     extends _$CreateAccountStateCopyWithImpl<$Res>
-    implements _$CreateAccountStateLoadingCopyWith<$Res> {
-  __$CreateAccountStateLoadingCopyWithImpl(_CreateAccountStateLoading _value,
-      $Res Function(_CreateAccountStateLoading) _then)
-      : super(_value, (v) => _then(v as _CreateAccountStateLoading));
+    implements $CreateAccountStateLoadingCopyWith<$Res> {
+  _$CreateAccountStateLoadingCopyWithImpl(CreateAccountStateLoading _value,
+      $Res Function(CreateAccountStateLoading) _then)
+      : super(_value, (v) => _then(v as CreateAccountStateLoading));
 
   @override
-  _CreateAccountStateLoading get _value =>
-      super._value as _CreateAccountStateLoading;
+  CreateAccountStateLoading get _value =>
+      super._value as CreateAccountStateLoading;
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_CreateAccountStateLoading implements _CreateAccountStateLoading {
-  const _$_CreateAccountStateLoading({String? $type})
+class _$CreateAccountStateLoading implements CreateAccountStateLoading {
+  const _$CreateAccountStateLoading({String? $type})
       : $type = $type ?? 'loading';
 
-  factory _$_CreateAccountStateLoading.fromJson(Map<String, dynamic> json) =>
-      _$$_CreateAccountStateLoadingFromJson(json);
+  factory _$CreateAccountStateLoading.fromJson(Map<String, dynamic> json) =>
+      _$$CreateAccountStateLoadingFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -435,7 +678,7 @@ class _$_CreateAccountStateLoading implements _CreateAccountStateLoading {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CreateAccountStateLoading);
+            other is CreateAccountStateLoading);
   }
 
   @override
@@ -445,7 +688,8 @@ class _$_CreateAccountStateLoading implements _CreateAccountStateLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function() error,
+    required TResult Function(String userId, String password) value,
+    required TResult Function(String code) error,
     required TResult Function() loading,
     required TResult Function() success,
   }) {
@@ -456,7 +700,8 @@ class _$_CreateAccountStateLoading implements _CreateAccountStateLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? error,
+    TResult Function(String userId, String password)? value,
+    TResult Function(String code)? error,
     TResult Function()? loading,
     TResult Function()? success,
   }) {
@@ -467,7 +712,8 @@ class _$_CreateAccountStateLoading implements _CreateAccountStateLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? error,
+    TResult Function(String userId, String password)? value,
+    TResult Function(String code)? error,
     TResult Function()? loading,
     TResult Function()? success,
     required TResult orElse(),
@@ -482,9 +728,10 @@ class _$_CreateAccountStateLoading implements _CreateAccountStateLoading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(_CreateAccountState value) $default, {
-    required TResult Function(_CreateAccountStateError value) error,
-    required TResult Function(_CreateAccountStateLoading value) loading,
-    required TResult Function(_CreateAccountStateSuccess value) success,
+    required TResult Function(CreateAccountStateValue value) value,
+    required TResult Function(CreateAccountStateError value) error,
+    required TResult Function(CreateAccountStateLoading value) loading,
+    required TResult Function(CreateAccountStateSuccess value) success,
   }) {
     return loading(this);
   }
@@ -493,9 +740,10 @@ class _$_CreateAccountStateLoading implements _CreateAccountStateLoading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult Function(_CreateAccountState value)? $default, {
-    TResult Function(_CreateAccountStateError value)? error,
-    TResult Function(_CreateAccountStateLoading value)? loading,
-    TResult Function(_CreateAccountStateSuccess value)? success,
+    TResult Function(CreateAccountStateValue value)? value,
+    TResult Function(CreateAccountStateError value)? error,
+    TResult Function(CreateAccountStateLoading value)? loading,
+    TResult Function(CreateAccountStateSuccess value)? success,
   }) {
     return loading?.call(this);
   }
@@ -504,9 +752,10 @@ class _$_CreateAccountStateLoading implements _CreateAccountStateLoading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_CreateAccountState value)? $default, {
-    TResult Function(_CreateAccountStateError value)? error,
-    TResult Function(_CreateAccountStateLoading value)? loading,
-    TResult Function(_CreateAccountStateSuccess value)? success,
+    TResult Function(CreateAccountStateValue value)? value,
+    TResult Function(CreateAccountStateError value)? error,
+    TResult Function(CreateAccountStateLoading value)? loading,
+    TResult Function(CreateAccountStateSuccess value)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -517,45 +766,45 @@ class _$_CreateAccountStateLoading implements _CreateAccountStateLoading {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateAccountStateLoadingToJson(this);
+    return _$$CreateAccountStateLoadingToJson(this);
   }
 }
 
-abstract class _CreateAccountStateLoading implements CreateAccountState {
-  const factory _CreateAccountStateLoading() = _$_CreateAccountStateLoading;
+abstract class CreateAccountStateLoading implements CreateAccountState {
+  const factory CreateAccountStateLoading() = _$CreateAccountStateLoading;
 
-  factory _CreateAccountStateLoading.fromJson(Map<String, dynamic> json) =
-      _$_CreateAccountStateLoading.fromJson;
+  factory CreateAccountStateLoading.fromJson(Map<String, dynamic> json) =
+      _$CreateAccountStateLoading.fromJson;
 }
 
 /// @nodoc
-abstract class _$CreateAccountStateSuccessCopyWith<$Res> {
-  factory _$CreateAccountStateSuccessCopyWith(_CreateAccountStateSuccess value,
-          $Res Function(_CreateAccountStateSuccess) then) =
-      __$CreateAccountStateSuccessCopyWithImpl<$Res>;
+abstract class $CreateAccountStateSuccessCopyWith<$Res> {
+  factory $CreateAccountStateSuccessCopyWith(CreateAccountStateSuccess value,
+          $Res Function(CreateAccountStateSuccess) then) =
+      _$CreateAccountStateSuccessCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$CreateAccountStateSuccessCopyWithImpl<$Res>
+class _$CreateAccountStateSuccessCopyWithImpl<$Res>
     extends _$CreateAccountStateCopyWithImpl<$Res>
-    implements _$CreateAccountStateSuccessCopyWith<$Res> {
-  __$CreateAccountStateSuccessCopyWithImpl(_CreateAccountStateSuccess _value,
-      $Res Function(_CreateAccountStateSuccess) _then)
-      : super(_value, (v) => _then(v as _CreateAccountStateSuccess));
+    implements $CreateAccountStateSuccessCopyWith<$Res> {
+  _$CreateAccountStateSuccessCopyWithImpl(CreateAccountStateSuccess _value,
+      $Res Function(CreateAccountStateSuccess) _then)
+      : super(_value, (v) => _then(v as CreateAccountStateSuccess));
 
   @override
-  _CreateAccountStateSuccess get _value =>
-      super._value as _CreateAccountStateSuccess;
+  CreateAccountStateSuccess get _value =>
+      super._value as CreateAccountStateSuccess;
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_CreateAccountStateSuccess implements _CreateAccountStateSuccess {
-  const _$_CreateAccountStateSuccess({String? $type})
+class _$CreateAccountStateSuccess implements CreateAccountStateSuccess {
+  const _$CreateAccountStateSuccess({String? $type})
       : $type = $type ?? 'success';
 
-  factory _$_CreateAccountStateSuccess.fromJson(Map<String, dynamic> json) =>
-      _$$_CreateAccountStateSuccessFromJson(json);
+  factory _$CreateAccountStateSuccess.fromJson(Map<String, dynamic> json) =>
+      _$$CreateAccountStateSuccessFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -569,7 +818,7 @@ class _$_CreateAccountStateSuccess implements _CreateAccountStateSuccess {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CreateAccountStateSuccess);
+            other is CreateAccountStateSuccess);
   }
 
   @override
@@ -579,7 +828,8 @@ class _$_CreateAccountStateSuccess implements _CreateAccountStateSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function() error,
+    required TResult Function(String userId, String password) value,
+    required TResult Function(String code) error,
     required TResult Function() loading,
     required TResult Function() success,
   }) {
@@ -590,7 +840,8 @@ class _$_CreateAccountStateSuccess implements _CreateAccountStateSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? error,
+    TResult Function(String userId, String password)? value,
+    TResult Function(String code)? error,
     TResult Function()? loading,
     TResult Function()? success,
   }) {
@@ -601,7 +852,8 @@ class _$_CreateAccountStateSuccess implements _CreateAccountStateSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? error,
+    TResult Function(String userId, String password)? value,
+    TResult Function(String code)? error,
     TResult Function()? loading,
     TResult Function()? success,
     required TResult orElse(),
@@ -616,9 +868,10 @@ class _$_CreateAccountStateSuccess implements _CreateAccountStateSuccess {
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
     TResult Function(_CreateAccountState value) $default, {
-    required TResult Function(_CreateAccountStateError value) error,
-    required TResult Function(_CreateAccountStateLoading value) loading,
-    required TResult Function(_CreateAccountStateSuccess value) success,
+    required TResult Function(CreateAccountStateValue value) value,
+    required TResult Function(CreateAccountStateError value) error,
+    required TResult Function(CreateAccountStateLoading value) loading,
+    required TResult Function(CreateAccountStateSuccess value) success,
   }) {
     return success(this);
   }
@@ -627,9 +880,10 @@ class _$_CreateAccountStateSuccess implements _CreateAccountStateSuccess {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult Function(_CreateAccountState value)? $default, {
-    TResult Function(_CreateAccountStateError value)? error,
-    TResult Function(_CreateAccountStateLoading value)? loading,
-    TResult Function(_CreateAccountStateSuccess value)? success,
+    TResult Function(CreateAccountStateValue value)? value,
+    TResult Function(CreateAccountStateError value)? error,
+    TResult Function(CreateAccountStateLoading value)? loading,
+    TResult Function(CreateAccountStateSuccess value)? success,
   }) {
     return success?.call(this);
   }
@@ -638,9 +892,10 @@ class _$_CreateAccountStateSuccess implements _CreateAccountStateSuccess {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_CreateAccountState value)? $default, {
-    TResult Function(_CreateAccountStateError value)? error,
-    TResult Function(_CreateAccountStateLoading value)? loading,
-    TResult Function(_CreateAccountStateSuccess value)? success,
+    TResult Function(CreateAccountStateValue value)? value,
+    TResult Function(CreateAccountStateError value)? error,
+    TResult Function(CreateAccountStateLoading value)? loading,
+    TResult Function(CreateAccountStateSuccess value)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -651,13 +906,13 @@ class _$_CreateAccountStateSuccess implements _CreateAccountStateSuccess {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateAccountStateSuccessToJson(this);
+    return _$$CreateAccountStateSuccessToJson(this);
   }
 }
 
-abstract class _CreateAccountStateSuccess implements CreateAccountState {
-  const factory _CreateAccountStateSuccess() = _$_CreateAccountStateSuccess;
+abstract class CreateAccountStateSuccess implements CreateAccountState {
+  const factory CreateAccountStateSuccess() = _$CreateAccountStateSuccess;
 
-  factory _CreateAccountStateSuccess.fromJson(Map<String, dynamic> json) =
-      _$_CreateAccountStateSuccess.fromJson;
+  factory CreateAccountStateSuccess.fromJson(Map<String, dynamic> json) =
+      _$CreateAccountStateSuccess.fromJson;
 }
