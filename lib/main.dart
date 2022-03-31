@@ -2,21 +2,17 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_lab/authentication/notifiers/account_notifier.dart';
 import 'package:firebase_lab/authentication/ui/onboard.dart';
 import 'package:firebase_lab/di/injection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import 'authentication/notifiers/onboard_notifier.dart';
 
 void main() {
   runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
       await Firebase.initializeApp();
-      inject.registerSingleton(OnboardNotifier());
-      inject.registerSingleton(AccountNotifier());
+      await initializeModules();
       runApp(const App());
     },
     (error, stackTrace) {
