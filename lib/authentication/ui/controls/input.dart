@@ -70,12 +70,6 @@ class FormFieldInput extends StatefulWidget {
 
 class _FormFieldInputState extends State<FormFieldInput> {
   @override
-  void dispose() {
-    widget.controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: widget.isObfuscated,
