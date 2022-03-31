@@ -26,6 +26,10 @@ OnboardState _$OnboardStateFromJson(Map<String, dynamic> json) {
       return OnboardStateForgetPassword.fromJson(json);
     case 'loading':
       return OnboardStateLoading.fromJson(json);
+    case 'success':
+      return OnboardStateSuccess.fromJson(json);
+    case 'error':
+      return OnboardStateError.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'OnboardState',
@@ -57,6 +61,16 @@ class _$OnboardStateTearOff {
     return const OnboardStateLoading();
   }
 
+  OnboardStateSuccess success() {
+    return const OnboardStateSuccess();
+  }
+
+  OnboardStateError error(String code) {
+    return OnboardStateError(
+      code,
+    );
+  }
+
   OnboardState fromJson(Map<String, Object?> json) {
     return OnboardState.fromJson(json);
   }
@@ -74,6 +88,8 @@ mixin _$OnboardState {
     required TResult Function() account,
     required TResult Function() forgetPassword,
     required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String code) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -83,6 +99,8 @@ mixin _$OnboardState {
     TResult Function()? account,
     TResult Function()? forgetPassword,
     TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -92,6 +110,8 @@ mixin _$OnboardState {
     TResult Function()? account,
     TResult Function()? forgetPassword,
     TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -102,6 +122,8 @@ mixin _$OnboardState {
     required TResult Function(OnboardStateAccount value) account,
     required TResult Function(OnboardStateForgetPassword value) forgetPassword,
     required TResult Function(OnboardStateLoading value) loading,
+    required TResult Function(OnboardStateSuccess value) success,
+    required TResult Function(OnboardStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -111,6 +133,8 @@ mixin _$OnboardState {
     TResult Function(OnboardStateAccount value)? account,
     TResult Function(OnboardStateForgetPassword value)? forgetPassword,
     TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -120,6 +144,8 @@ mixin _$OnboardState {
     TResult Function(OnboardStateAccount value)? account,
     TResult Function(OnboardStateForgetPassword value)? forgetPassword,
     TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -193,6 +219,8 @@ class _$_OnboardState implements _OnboardState {
     required TResult Function() account,
     required TResult Function() forgetPassword,
     required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String code) error,
   }) {
     return $default();
   }
@@ -205,6 +233,8 @@ class _$_OnboardState implements _OnboardState {
     TResult Function()? account,
     TResult Function()? forgetPassword,
     TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
   }) {
     return $default?.call();
   }
@@ -217,6 +247,8 @@ class _$_OnboardState implements _OnboardState {
     TResult Function()? account,
     TResult Function()? forgetPassword,
     TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -233,6 +265,8 @@ class _$_OnboardState implements _OnboardState {
     required TResult Function(OnboardStateAccount value) account,
     required TResult Function(OnboardStateForgetPassword value) forgetPassword,
     required TResult Function(OnboardStateLoading value) loading,
+    required TResult Function(OnboardStateSuccess value) success,
+    required TResult Function(OnboardStateError value) error,
   }) {
     return $default(this);
   }
@@ -245,6 +279,8 @@ class _$_OnboardState implements _OnboardState {
     TResult Function(OnboardStateAccount value)? account,
     TResult Function(OnboardStateForgetPassword value)? forgetPassword,
     TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
   }) {
     return $default?.call(this);
   }
@@ -257,6 +293,8 @@ class _$_OnboardState implements _OnboardState {
     TResult Function(OnboardStateAccount value)? account,
     TResult Function(OnboardStateForgetPassword value)? forgetPassword,
     TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -330,6 +368,8 @@ class _$OnboardStatePassword implements OnboardStatePassword {
     required TResult Function() account,
     required TResult Function() forgetPassword,
     required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String code) error,
   }) {
     return password();
   }
@@ -342,6 +382,8 @@ class _$OnboardStatePassword implements OnboardStatePassword {
     TResult Function()? account,
     TResult Function()? forgetPassword,
     TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
   }) {
     return password?.call();
   }
@@ -354,6 +396,8 @@ class _$OnboardStatePassword implements OnboardStatePassword {
     TResult Function()? account,
     TResult Function()? forgetPassword,
     TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
     required TResult orElse(),
   }) {
     if (password != null) {
@@ -370,6 +414,8 @@ class _$OnboardStatePassword implements OnboardStatePassword {
     required TResult Function(OnboardStateAccount value) account,
     required TResult Function(OnboardStateForgetPassword value) forgetPassword,
     required TResult Function(OnboardStateLoading value) loading,
+    required TResult Function(OnboardStateSuccess value) success,
+    required TResult Function(OnboardStateError value) error,
   }) {
     return password(this);
   }
@@ -382,6 +428,8 @@ class _$OnboardStatePassword implements OnboardStatePassword {
     TResult Function(OnboardStateAccount value)? account,
     TResult Function(OnboardStateForgetPassword value)? forgetPassword,
     TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
   }) {
     return password?.call(this);
   }
@@ -394,6 +442,8 @@ class _$OnboardStatePassword implements OnboardStatePassword {
     TResult Function(OnboardStateAccount value)? account,
     TResult Function(OnboardStateForgetPassword value)? forgetPassword,
     TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
     required TResult orElse(),
   }) {
     if (password != null) {
@@ -467,6 +517,8 @@ class _$OnboardStateAccount implements OnboardStateAccount {
     required TResult Function() account,
     required TResult Function() forgetPassword,
     required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String code) error,
   }) {
     return account();
   }
@@ -479,6 +531,8 @@ class _$OnboardStateAccount implements OnboardStateAccount {
     TResult Function()? account,
     TResult Function()? forgetPassword,
     TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
   }) {
     return account?.call();
   }
@@ -491,6 +545,8 @@ class _$OnboardStateAccount implements OnboardStateAccount {
     TResult Function()? account,
     TResult Function()? forgetPassword,
     TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
     required TResult orElse(),
   }) {
     if (account != null) {
@@ -507,6 +563,8 @@ class _$OnboardStateAccount implements OnboardStateAccount {
     required TResult Function(OnboardStateAccount value) account,
     required TResult Function(OnboardStateForgetPassword value) forgetPassword,
     required TResult Function(OnboardStateLoading value) loading,
+    required TResult Function(OnboardStateSuccess value) success,
+    required TResult Function(OnboardStateError value) error,
   }) {
     return account(this);
   }
@@ -519,6 +577,8 @@ class _$OnboardStateAccount implements OnboardStateAccount {
     TResult Function(OnboardStateAccount value)? account,
     TResult Function(OnboardStateForgetPassword value)? forgetPassword,
     TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
   }) {
     return account?.call(this);
   }
@@ -531,6 +591,8 @@ class _$OnboardStateAccount implements OnboardStateAccount {
     TResult Function(OnboardStateAccount value)? account,
     TResult Function(OnboardStateForgetPassword value)? forgetPassword,
     TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
     required TResult orElse(),
   }) {
     if (account != null) {
@@ -607,6 +669,8 @@ class _$OnboardStateForgetPassword implements OnboardStateForgetPassword {
     required TResult Function() account,
     required TResult Function() forgetPassword,
     required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String code) error,
   }) {
     return forgetPassword();
   }
@@ -619,6 +683,8 @@ class _$OnboardStateForgetPassword implements OnboardStateForgetPassword {
     TResult Function()? account,
     TResult Function()? forgetPassword,
     TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
   }) {
     return forgetPassword?.call();
   }
@@ -631,6 +697,8 @@ class _$OnboardStateForgetPassword implements OnboardStateForgetPassword {
     TResult Function()? account,
     TResult Function()? forgetPassword,
     TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
     required TResult orElse(),
   }) {
     if (forgetPassword != null) {
@@ -647,6 +715,8 @@ class _$OnboardStateForgetPassword implements OnboardStateForgetPassword {
     required TResult Function(OnboardStateAccount value) account,
     required TResult Function(OnboardStateForgetPassword value) forgetPassword,
     required TResult Function(OnboardStateLoading value) loading,
+    required TResult Function(OnboardStateSuccess value) success,
+    required TResult Function(OnboardStateError value) error,
   }) {
     return forgetPassword(this);
   }
@@ -659,6 +729,8 @@ class _$OnboardStateForgetPassword implements OnboardStateForgetPassword {
     TResult Function(OnboardStateAccount value)? account,
     TResult Function(OnboardStateForgetPassword value)? forgetPassword,
     TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
   }) {
     return forgetPassword?.call(this);
   }
@@ -671,6 +743,8 @@ class _$OnboardStateForgetPassword implements OnboardStateForgetPassword {
     TResult Function(OnboardStateAccount value)? account,
     TResult Function(OnboardStateForgetPassword value)? forgetPassword,
     TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
     required TResult orElse(),
   }) {
     if (forgetPassword != null) {
@@ -744,6 +818,8 @@ class _$OnboardStateLoading implements OnboardStateLoading {
     required TResult Function() account,
     required TResult Function() forgetPassword,
     required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String code) error,
   }) {
     return loading();
   }
@@ -756,6 +832,8 @@ class _$OnboardStateLoading implements OnboardStateLoading {
     TResult Function()? account,
     TResult Function()? forgetPassword,
     TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
   }) {
     return loading?.call();
   }
@@ -768,6 +846,8 @@ class _$OnboardStateLoading implements OnboardStateLoading {
     TResult Function()? account,
     TResult Function()? forgetPassword,
     TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -784,6 +864,8 @@ class _$OnboardStateLoading implements OnboardStateLoading {
     required TResult Function(OnboardStateAccount value) account,
     required TResult Function(OnboardStateForgetPassword value) forgetPassword,
     required TResult Function(OnboardStateLoading value) loading,
+    required TResult Function(OnboardStateSuccess value) success,
+    required TResult Function(OnboardStateError value) error,
   }) {
     return loading(this);
   }
@@ -796,6 +878,8 @@ class _$OnboardStateLoading implements OnboardStateLoading {
     TResult Function(OnboardStateAccount value)? account,
     TResult Function(OnboardStateForgetPassword value)? forgetPassword,
     TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -808,6 +892,8 @@ class _$OnboardStateLoading implements OnboardStateLoading {
     TResult Function(OnboardStateAccount value)? account,
     TResult Function(OnboardStateForgetPassword value)? forgetPassword,
     TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -827,4 +913,332 @@ abstract class OnboardStateLoading implements OnboardState {
 
   factory OnboardStateLoading.fromJson(Map<String, dynamic> json) =
       _$OnboardStateLoading.fromJson;
+}
+
+/// @nodoc
+abstract class $OnboardStateSuccessCopyWith<$Res> {
+  factory $OnboardStateSuccessCopyWith(
+          OnboardStateSuccess value, $Res Function(OnboardStateSuccess) then) =
+      _$OnboardStateSuccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$OnboardStateSuccessCopyWithImpl<$Res>
+    extends _$OnboardStateCopyWithImpl<$Res>
+    implements $OnboardStateSuccessCopyWith<$Res> {
+  _$OnboardStateSuccessCopyWithImpl(
+      OnboardStateSuccess _value, $Res Function(OnboardStateSuccess) _then)
+      : super(_value, (v) => _then(v as OnboardStateSuccess));
+
+  @override
+  OnboardStateSuccess get _value => super._value as OnboardStateSuccess;
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OnboardStateSuccess implements OnboardStateSuccess {
+  const _$OnboardStateSuccess({String? $type}) : $type = $type ?? 'success';
+
+  factory _$OnboardStateSuccess.fromJson(Map<String, dynamic> json) =>
+      _$$OnboardStateSuccessFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'OnboardState.success()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is OnboardStateSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() password,
+    required TResult Function() account,
+    required TResult Function() forgetPassword,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String code) error,
+  }) {
+    return success();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? password,
+    TResult Function()? account,
+    TResult Function()? forgetPassword,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
+  }) {
+    return success?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? password,
+    TResult Function()? account,
+    TResult Function()? forgetPassword,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OnboardState value) $default, {
+    required TResult Function(OnboardStatePassword value) password,
+    required TResult Function(OnboardStateAccount value) account,
+    required TResult Function(OnboardStateForgetPassword value) forgetPassword,
+    required TResult Function(OnboardStateLoading value) loading,
+    required TResult Function(OnboardStateSuccess value) success,
+    required TResult Function(OnboardStateError value) error,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_OnboardState value)? $default, {
+    TResult Function(OnboardStatePassword value)? password,
+    TResult Function(OnboardStateAccount value)? account,
+    TResult Function(OnboardStateForgetPassword value)? forgetPassword,
+    TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OnboardState value)? $default, {
+    TResult Function(OnboardStatePassword value)? password,
+    TResult Function(OnboardStateAccount value)? account,
+    TResult Function(OnboardStateForgetPassword value)? forgetPassword,
+    TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OnboardStateSuccessToJson(this);
+  }
+}
+
+abstract class OnboardStateSuccess implements OnboardState {
+  const factory OnboardStateSuccess() = _$OnboardStateSuccess;
+
+  factory OnboardStateSuccess.fromJson(Map<String, dynamic> json) =
+      _$OnboardStateSuccess.fromJson;
+}
+
+/// @nodoc
+abstract class $OnboardStateErrorCopyWith<$Res> {
+  factory $OnboardStateErrorCopyWith(
+          OnboardStateError value, $Res Function(OnboardStateError) then) =
+      _$OnboardStateErrorCopyWithImpl<$Res>;
+  $Res call({String code});
+}
+
+/// @nodoc
+class _$OnboardStateErrorCopyWithImpl<$Res>
+    extends _$OnboardStateCopyWithImpl<$Res>
+    implements $OnboardStateErrorCopyWith<$Res> {
+  _$OnboardStateErrorCopyWithImpl(
+      OnboardStateError _value, $Res Function(OnboardStateError) _then)
+      : super(_value, (v) => _then(v as OnboardStateError));
+
+  @override
+  OnboardStateError get _value => super._value as OnboardStateError;
+
+  @override
+  $Res call({
+    Object? code = freezed,
+  }) {
+    return _then(OnboardStateError(
+      code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OnboardStateError implements OnboardStateError {
+  const _$OnboardStateError(this.code, {String? $type})
+      : $type = $type ?? 'error';
+
+  factory _$OnboardStateError.fromJson(Map<String, dynamic> json) =>
+      _$$OnboardStateErrorFromJson(json);
+
+  @override
+  final String code;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'OnboardState.error(code: $code)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is OnboardStateError &&
+            const DeepCollectionEquality().equals(other.code, code));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(code));
+
+  @JsonKey(ignore: true)
+  @override
+  $OnboardStateErrorCopyWith<OnboardStateError> get copyWith =>
+      _$OnboardStateErrorCopyWithImpl<OnboardStateError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() password,
+    required TResult Function() account,
+    required TResult Function() forgetPassword,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String code) error,
+  }) {
+    return error(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? password,
+    TResult Function()? account,
+    TResult Function()? forgetPassword,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
+  }) {
+    return error?.call(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? password,
+    TResult Function()? account,
+    TResult Function()? forgetPassword,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String code)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(code);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OnboardState value) $default, {
+    required TResult Function(OnboardStatePassword value) password,
+    required TResult Function(OnboardStateAccount value) account,
+    required TResult Function(OnboardStateForgetPassword value) forgetPassword,
+    required TResult Function(OnboardStateLoading value) loading,
+    required TResult Function(OnboardStateSuccess value) success,
+    required TResult Function(OnboardStateError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_OnboardState value)? $default, {
+    TResult Function(OnboardStatePassword value)? password,
+    TResult Function(OnboardStateAccount value)? account,
+    TResult Function(OnboardStateForgetPassword value)? forgetPassword,
+    TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OnboardState value)? $default, {
+    TResult Function(OnboardStatePassword value)? password,
+    TResult Function(OnboardStateAccount value)? account,
+    TResult Function(OnboardStateForgetPassword value)? forgetPassword,
+    TResult Function(OnboardStateLoading value)? loading,
+    TResult Function(OnboardStateSuccess value)? success,
+    TResult Function(OnboardStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OnboardStateErrorToJson(this);
+  }
+}
+
+abstract class OnboardStateError implements OnboardState {
+  const factory OnboardStateError(String code) = _$OnboardStateError;
+
+  factory OnboardStateError.fromJson(Map<String, dynamic> json) =
+      _$OnboardStateError.fromJson;
+
+  String get code;
+  @JsonKey(ignore: true)
+  $OnboardStateErrorCopyWith<OnboardStateError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

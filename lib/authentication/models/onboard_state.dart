@@ -15,5 +15,9 @@ class OnboardState with _$OnboardState {
 
   const factory OnboardState.loading() = OnboardStateLoading;
 
+  const factory OnboardState.success() = OnboardStateSuccess;
+
+  const factory OnboardState.error(String code) = OnboardStateError;
+
   factory OnboardState.fromJson(Map<String, Object?> json) => _$OnboardStateFromJson(json);
 }

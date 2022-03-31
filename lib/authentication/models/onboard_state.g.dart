@@ -63,3 +63,27 @@ Map<String, dynamic> _$$OnboardStateLoadingToJson(
     <String, dynamic>{
       'runtimeType': instance.$type,
     };
+
+_$OnboardStateSuccess _$$OnboardStateSuccessFromJson(
+        Map<String, dynamic> json) =>
+    _$OnboardStateSuccess(
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$OnboardStateSuccessToJson(
+        _$OnboardStateSuccess instance) =>
+    <String, dynamic>{
+      'runtimeType': instance.$type,
+    };
+
+_$OnboardStateError _$$OnboardStateErrorFromJson(Map<String, dynamic> json) =>
+    _$OnboardStateError(
+      json['code'] as String,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$OnboardStateErrorToJson(_$OnboardStateError instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'runtimeType': instance.$type,
+    };

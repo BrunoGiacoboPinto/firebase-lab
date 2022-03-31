@@ -1,10 +1,14 @@
 import 'package:animations/animations.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_lab/authentication/models/onboard_state.dart';
 import 'package:firebase_lab/authentication/notifiers/onboard_notifier.dart';
 import 'package:firebase_lab/authentication/ui/create_account.dart';
 import 'package:firebase_lab/authentication/ui/forget_password.dart';
 import 'package:firebase_lab/di/injection.dart';
 import 'package:flutter/material.dart';
+
+import 'controls/input.dart';
 
 class OnboardPage extends StatefulWidget {
   const OnboardPage({Key? key}) : super(key: key);
@@ -30,6 +34,18 @@ class _OnboardPageState extends State<OnboardPage> {
         () {
           Navigator.of(context).popUntil(
             (route) => route.settings.name == OnboardPage.routeName,
+          );
+        },
+        success: () {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => Scaffold(
+                backgroundColor: Colors.amberAccent,
+                body: Center(
+                  child: Text(FirebaseAuth.instance.currentUser?.uid ?? 'Fail'),
+                ),
+              ),
+            ),
           );
         },
         forgetPassword: () {
@@ -58,6 +74,23 @@ class _OnboardPageState extends State<OnboardPage> {
     });
   }
 
+  final emailFormKey = GlobalKey<FormState>();
+  final passwordFormKey = GlobalKey<FormState>();
+
+  late final FormFieldInput emailInput = FormFieldInput.email(
+    validator: (String? email) {
+      bool isEmailValid = email != null && EmailValidator.validate(email.trim());
+      return isEmailValid ? null : 'Insira um e-mail válido';
+    },
+  );
+
+  late final FormFieldInput passwordInput = FormFieldInput.password(
+    validator: (String? password) {
+      bool isPasswordValid = password != null && password.isNotEmpty && password.length == 8;
+      return isPasswordValid ? null : 'A senha deve ter 8 caracteres';
+    },
+  );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -75,16 +108,13 @@ class _OnboardPageState extends State<OnboardPage> {
                       child: state.whenOrNull(
                         () {
                           return Column(
+                            key: UniqueKey(),
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              TextField(
-                                textInputAction: TextInputAction.done,
-                                controller: TextEditingController(),
-                                decoration: const InputDecoration(
-                                  labelText: 'E-mail',
-                                  alignLabelWithHint: true,
-                                ),
+                              Form(
+                                key: emailFormKey,
+                                child: emailInput,
                               ),
                               const SizedBox(height: 8),
                               TextButton(
@@ -96,17 +126,13 @@ class _OnboardPageState extends State<OnboardPage> {
                         },
                         password: () {
                           return Column(
+                            key: UniqueKey(),
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              TextField(
-                                controller: TextEditingController(),
-                                textInputAction: TextInputAction.done,
-                                obscureText: true,
-                                decoration: const InputDecoration(
-                                  labelText: 'Senha',
-                                  alignLabelWithHint: true,
-                                ),
+                              Form(
+                                key: passwordFormKey,
+                                child: passwordInput,
                               ),
                               const SizedBox(height: 8),
                               TextButton(
@@ -116,6 +142,7 @@ class _OnboardPageState extends State<OnboardPage> {
                             ],
                           );
                         },
+                        loading: () => const Center(child: CircularProgressIndicator()),
                       ),
                       reverse: true,
                       duration: const Duration(milliseconds: 300),
@@ -132,18 +159,35 @@ class _OnboardPageState extends State<OnboardPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      if (state is OnboardStatePassword)
+                      if (state is OnboardStatePassword) ...{
                         TextButton.icon(
                           onPressed: () => notifier.value = const OnboardState(),
                           label: const Text('VOLTAR'),
                           icon: const Icon(Icons.chevron_left),
-                        )
-                      else
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            final formState = passwordFormKey.currentState;
+
+                            if (formState != null && formState.validate()) {
+                              notifier.logUserIn(emailInput.text, passwordInput.text);
+                            }
+                          },
+                          child: const Text('Entrar'),
+                        ),
+                      } else ...{
                         const Spacer(),
-                      ElevatedButton(
-                        onPressed: () => notifier.value = const OnboardState.password(),
-                        child: const Text('Próximo'),
-                      ),
+                        ElevatedButton(
+                          onPressed: () {
+                            final formState = emailFormKey.currentState;
+
+                            if (formState != null && formState.validate()) {
+                              notifier.value = const OnboardState.password();
+                            }
+                          },
+                          child: const Text('Próximo'),
+                        ),
+                      }
                     ],
                   )
                 ],
