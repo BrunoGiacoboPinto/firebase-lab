@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:firebase_lab/authentication/models/onboard_state.dart';
 import 'package:firebase_lab/authentication/notifiers/onboard_notifier.dart';
-import 'package:firebase_lab/authentication/ui/account.dart';
+import 'package:firebase_lab/authentication/ui/create_account.dart';
 import 'package:firebase_lab/authentication/ui/forget_password.dart';
 import 'package:firebase_lab/di/injection.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ class _OnboardPageState extends State<OnboardPage> {
       notifier.value.whenOrNull(
         () {
           Navigator.of(context).popUntil(
-            (route) => route.settings.name == OnboardPage.routeName
+            (route) => route.settings.name == OnboardPage.routeName,
           );
         },
         forgetPassword: () {
@@ -48,9 +48,7 @@ class _OnboardPageState extends State<OnboardPage> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) {
-                return CreateAccountPage(
-                  whenPopped: () => notifier.value = const OnboardState(),
-                );
+                return CreateAccountPage(whenPopped: () => notifier.value = const OnboardState());
               },
               settings: const RouteSettings(name: CreateAccountPage.routeName),
             ),
@@ -141,7 +139,7 @@ class _OnboardPageState extends State<OnboardPage> {
                           icon: const Icon(Icons.chevron_left),
                         )
                       else
-                        const Expanded(child: SizedBox()),
+                        const Spacer(),
                       ElevatedButton(
                         onPressed: () => notifier.value = const OnboardState.password(),
                         child: const Text('Próximo'),
